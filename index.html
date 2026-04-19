@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Andreans Game Store</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 350px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo-section {
+            margin-bottom: 40px;
+        }
+
+        .logo-section img {
+            width: 100px; /* Sesuaikan ukuran logo */
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: #1a3a5f; /* Warna biru gelap sesuai logo */
+            margin: 0;
+        }
+
+        .sub-logo-text {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #555;
+            margin-top: -5px;
+        }
+
+        h2 {
+            text-align: left;
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .subtitle {
+            text-align: left;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #e0e0e0;
+            box-sizing: border-box; /* Agar padding tidak merusak lebar */
+            font-size: 14px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        .btn-masuk {
+            width: 100%;
+            padding: 12px;
+            background-color: #f1c40f; /* Warna kuning tombol */
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .register-text {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .register-link {
+            color: #f1c40f;
+            text-decoration: none;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-section">
+            <div style="font-size: 50px; color: #1a3a5f;">🟦</div> 
+            <h1 class="logo-text">ANDREANS</h1>
+            <p class="sub-logo-text">GAME STORE</p>
+        </div>
+
+        <h2>Masuk</h2>
+        <p class="subtitle">Masuk dengan akun yang telah kamu daftarkan</p>
+
+        <form>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" placeholder="Username">
+            </div>
+
+            <div class="form-group">
+                <label>Kata Sandi</label>
+                <input type="password" placeholder="Password">
+            </div>
+
+            <div class="forgot-password">
+                Lupa Kata Sandi?
+            </div>
+
+            <button type="submit" class="btn-masuk">Masuk</button>
+        </form>
+
+        <div class="register-text">
+            Belum Memiliki Akun?
+            <a href="#" class="register-link">Daftar Sekarang</a>
+        </div>
+    </div>
+
+</body>
+</html>
