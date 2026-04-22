@@ -1,321 +1,179 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andreans Game Store</title>
-    <style>
-        :root {
-            --yellow: #FFD700;
-            --dark: #0A1D37;
-            --grey: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andreams Game Store</title>
 
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            background-color: #121212;
-            display: flex;
-            justify-content: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
 
-        .app-container {
-            width: 100%;
-            max-width: 450px;
-            background: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+/* SEMUA HALAMAN */
+.page {
+    display: none;
+}
 
-        /* Navigasi Halaman */
-        .page { display: none; flex-direction: column; height: 100%; }
-        .page.active { display: flex; }
+/* AKTIF */
+.active {
+    display: block;
+}
 
-        /* --- STYLING LOGIN --- */
-        #login-page {
-            background: var(--yellow);
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+/* LOGIN */
+.container {
+    max-width: 360px;
+    margin: auto;
+    padding: 20px;
+}
 
-        .login-box {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 20px;
-            width: 80%;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
+.logo {
+    text-align: center;
+    margin: 40px 0;
+}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
+.logo img {
+    width: 200px;
+}
 
-        .btn-main {
-            background: var(--dark);
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+h1 {
+    text-align: left;
+}
 
-        /* --- STYLING DASHBOARD --- */
-        header {
-            background: var(--dark);
-            padding: 15px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #ddd;
+    margin-top: 10px;
+}
 
-        .promo-banner {
-            background: #eee;
-            margin: 15px;
-            height: 120px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            background: linear-gradient(45deg, #0A1D37, #2563eb);
-            color: white;
-        }
+.btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    background: #f4b400;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+}
 
-        .game-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            padding: 15px;
-        }
+/* HOME */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
 
-        .game-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            cursor: pointer;
-            border: 1px solid #eee;
-            text-align: center;
-        }
+.menu {
+    display: flex;
+    justify-content: space-around;
+    background: #0f3b66;
+    color: #f4b400;
+    margin: 15px;
+    border-radius: 30px;
+    padding: 10px;
+}
 
-        .game-card img {
-            width: 100%;
-            height: 100px;
-            object-fit: contain;
-        }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+}
 
-        .game-card p {
-            font-size: 12px;
-            font-weight: bold;
-            margin: 8px 0;
-        }
+.card {
+    background: #0f3b66;
+    border-radius: 20px;
+    padding: 10px;
+    color: #f4b400;
+}
 
-        /* --- STYLING TOP UP (MLBB) --- */
-        .section-title {
-            font-size: 14px;
-            font-weight: bold;
-            padding: 10px 15px;
-            background: #f9f9f9;
-            border-left: 5px solid var(--yellow);
-        }
+.card img {
+    width: 100%;
+    border-radius: 15px;
+}
 
-        .item-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 15px;
-        }
-
-        .item-card {
-            border: 2px solid #eee;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .item-card.active {
-            border-color: var(--yellow);
-            background: #fffdf0;
-        }
-
-        /* MODAL QRIS */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .modal {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            width: 280px;
-        }
-
-        .qr-img { width: 200px; margin: 15px 0; }
-
-        footer {
-            margin-top: auto;
-            padding: 15px;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #f4b400;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="app-container">
-        
-        <div id="login-page" class="page active">
-            <div class="login-box">
-                <h2 style="color: var(--dark)">ANDREANS</h2>
-                <p>Masuk ke Akun Anda</p>
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <button class="btn-main" onclick="goToPage('home-page')">MASUK</button>
-            </div>
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="page active">
+    <div class="container">
+        <div class="logo">
+            <img src="Logo.png">
         </div>
 
-        <div id="home-page" class="page">
-            <header>
-                <span>ANDREANS STORE</span>
-                <span>👤</span>
-            </header>
-            <div class="promo-banner">PROMO AWAL TAHUN 2026</div>
-            <div class="section-title">PILIH GAME</div>
-            <div class="game-grid">
-                <div class="game-card" onclick="goToPage('topup-page')">
-                    <img src="MLBB.jpeg" alt="ML">
-                    <p>Mobile Legends</p>
-                </div>
-                <div class="game-card">
-                    <img src="PUBG.png" alt="PUBG">
-                    <p>PUBG Mobile</p>
-                </div>
-                <div class="game-card">
-                    <img src="FF.jpeg" alt="FF">
-                    <p>Free Fire</p>
-                </div>
-                <div class="game-card">
-                    <img src="HOK.jpeg" alt="HOK">
-                    <p>Honor of Kings</p>
-                </div>
-            </div>
-        </div>
+        <h1>Masuk</h1>
+        <p>Masuk dengan akun yang telah kamu daftarkan</p>
 
-        <div id="topup-page" class="page">
-            <header>
-                <span onclick="goToPage('home-page')" style="cursor:pointer">⬅ Kembali</span>
-                <span>TOP UP MLBB</span>
-            </header>
-            
-            <div class="section-title">1. MASUKKAN DATA</div>
-            <div style="padding:15px; display:flex; gap:10px;">
-                <input type="number" id="uid" placeholder="User ID">
-                <input type="number" id="zid" placeholder="Zone ID" style="width:120px;">
-            </div>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
 
-            <div class="section-title">2. PILIH NOMINAL</div>
-            <div class="item-grid">
-                <div class="item-card" onclick="setNominal(this, '86 Diamonds', 20000)">
-                    <strong>86 Diamonds</strong><br><span>Rp 20.000</span>
-                </div>
-                <div class="item-card" onclick="setNominal(this, '172 Diamonds', 40000)">
-                    <strong>172 Diamonds</strong><br><span>Rp 40.000</span>
-                </div>
-                <div class="item-card" onclick="setNominal(this, '257 Diamonds', 60000)">
-                    <strong>257 Diamonds</strong><br><span>Rp 60.000</span>
-                </div>
-                <div class="item-card" onclick="setNominal(this, '706 Diamonds', 150000)">
-                    <strong>706 Diamonds</strong><br><span>Rp 150.000</span>
-                </div>
-            </div>
+        <button class="btn" onclick="login()">Masuk</button>
+    </div>
+</div>
 
-            <div class="section-title">3. PEMBAYARAN</div>
-            <div style="padding:15px">
-                <div style="border: 2px solid #2563eb; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; background: #f0f7ff;">
-                    <span>Bayar Menggunakan <strong>QRIS</strong></span>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" width="40">
-                </div>
-            </div>
-
-            <footer>
-                <div>
-                    <small>Total:</small><br>
-                    <strong id="total-txt" style="color:red">Rp 0</strong>
-                </div>
-                <button class="btn-main" style="width:150px" onclick="prosesBayar()">BELI SEKARANG</button>
-            </footer>
-        </div>
-
+<!-- HOME PAGE -->
+<div id="homePage" class="page">
+    
+    <div class="header">
+        <b>Andreans <span style="color:#f4b400">Game Store</span></b>
+        🔍
     </div>
 
-    <div class="overlay" id="qr-modal">
-        <div class="modal">
-            <h3>SCAN UNTUK BAYAR</h3>
-            <p id="order-info" style="font-size: 12px; color: #666;"></p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" class="qr-img">
-            <button class="btn-main" onclick="closeModal()">Selesai / Tutup</button>
+    <div style="padding:15px;">
+        <img src="Banner.png" style="width:100%; border-radius:15px;">
+    </div>
+
+    <div class="menu">
+        <div>Populer</div>
+        <div>Top Up</div>
+        <div>Pulsa</div>
+        <div>Voucher</div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <img src="MLBB.jpeg">
+            <h3>Mobile Legend</h3>
+            <p>Moonton</p>
+        </div>
+
+        <div class="card">
+            <img src="HOK.jpeg">
+            <h3>Honor Of Kings</h3>
+            <p>Tencent</p>
         </div>
     </div>
 
-    <script>
-        let selectedItem = "";
-        let selectedPrice = 0;
+    <div class="navbar">
+        🏠 🎮 📊 👤
+    </div>
 
-        // Fungsi pindah halaman
-        function goToPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0,0);
-        }
+</div>
 
-        // Fungsi pilih nominal
-        function setNominal(el, name, price) {
-            document.querySelectorAll('.item-card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-            selectedItem = name;
-            selectedPrice = price;
-            document.getElementById('total-txt').innerText = "Rp " + price.toLocaleString('id-ID');
-        }
+<script>
+function login() {
+    // langsung pindah halaman
+    document.getElementById("loginPage").classList.remove("active");
+    document.getElementById("homePage").classList.add("active");
+}
+</script>
 
-        // Fungsi bayar
-        function prosesBayar() {
-            let u = document.getElementById('uid').value;
-            let z = document.getElementById('zid').value;
-            
-            if(!u || !z || selectedPrice === 0) {
-                alert("Isi ID Akun dan pilih nominal dulu, Bos!");
-                return;
-            }
-            
-            document.getElementById('order-info').innerText = selectedItem + " - ID: " + u + "(" + z + ")";
-            document.getElementById('qr-modal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('qr-modal').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
